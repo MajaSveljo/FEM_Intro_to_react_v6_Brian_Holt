@@ -1,9 +1,11 @@
 const Pet = (props) => {
   return (
     <div>
+      <img className="image-container" src={props.images} alt="pet" />
       <h2>{props.name}</h2>
-      <h3>{props.animal}</h3>
-      <h3>{props.breed}</h3>
+      <h4>
+        {props.animal} - {props.breed} - {props.location}
+      </h4>
     </div>
   );
 };
