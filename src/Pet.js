@@ -1,12 +1,23 @@
-const Pet = (props) => {
+import { Link } from "react-router-dom";
+
+const Pet = ({ name, animal, breed, images, location, id }) => {
+  let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
+  if (images.length) {
+    hero = images[0];
+  }
+
   return (
-    <div>
-      <img className="image-container" src={props.images} alt="pet" />
-      <h2>{props.name}</h2>
-      <h4>
-        {props.animal} - {props.breed} - {props.location}
-      </h4>
-    </div>
+    <Link to={`/details/${id}`} className="pet">
+      <div className="image-container">
+        <img className="img" src={hero} alt="pet" />
+      </div>
+      <div className="info">
+        <h1>{name}</h1>
+        <h2>
+          {animal} - {breed} - {location}
+        </h2>
+      </div>
+    </Link>
   );
 };
 
