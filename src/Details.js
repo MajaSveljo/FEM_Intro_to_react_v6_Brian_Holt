@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { withRouter } from "react-router-dom";
 import Carousel from "./Carousel";
+import ErrorBoundry from "./ErrorBoundry";
 
 class Details extends Component {
   state = { loading: true };
@@ -29,6 +30,11 @@ class Details extends Component {
     const { animal, breed, city, state, description, name, images } =
       this.state;
 
+    // throw new Error("brokeeen");
+    // because of how JS works, if the error happened above the return
+    // we would never get to the error boundry. That's why
+    // we'll put the boundry above (or literaly below in code)
+
     return (
       <div className="details">
         <Carousel images={images} />
@@ -43,4 +49,12 @@ class Details extends Component {
   }
 }
 
-export default withRouter(Details);
+const DetailsWithRouter = withRouter(Details);
+
+export default function DetailsWithErrorBoundry() {
+  return (
+    <ErrorBoundry>
+      <DetailsWithRouter />
+    </ErrorBoundry>
+  );
+}
